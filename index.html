@@ -100,14 +100,15 @@
         loadGeoJSON('static/geojson/filter1.geojson', { style: { color: 'red', weight: 2 } }),
         loadGeoJSON('static/geojson/filter2.geojson', { style: { color: 'blue', weight: 2 } }),
         loadGeoJSON('static/geojson/filter3.geojson', { style: { color: 'green', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter4.geojson', { style: { color: 'orange', weight: 2 } })
+        loadGeoJSON('static/geojson/filter4.geojson', { style: { color: 'orange', weight: 2 } }),
+        loadGeoJSON('static/geojson/filter5.geojson', { style: { color: 'purple', weight: 2 } }) // New filter added
     ]).then(function(layers) {
         if (!layers.every(layer => layer)) {
             console.error("One or more layers failed to load. Check GeoJSON file paths.");
             return;
         }
 
-        var [tazLayer, centroidLayer, filter1Layer, filter2Layer, filter3Layer, filter4Layer] = layers;
+        var [tazLayer, centroidLayer, filter1Layer, filter2Layer, filter3Layer, filter4Layer, filter5Layer] = layers;
 
         // Extract all numeric TAZ_Area values
         var tazAreas = tazLayer.toGeoJSON().features.map(f => +f.properties.TAZ_Area || 0);
@@ -128,6 +129,7 @@
         filter2Layer.addTo(map);
         filter3Layer.addTo(map);
         filter4Layer.addTo(map);
+        filter5Layer.addTo(map); // Add the new layer to the map
 
         var groupedOverlays = {
             "Zones": {
