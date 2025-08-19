@@ -97,11 +97,36 @@
             }
         }),
         loadGeoJSON('static/geojson/centroid.geojson', { style: { color: 'yellow', weight: 1 } }),
-        loadGeoJSON('static/geojson/filter1.geojson', { style: { color: 'red', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter2.geojson', { style: { color: 'blue', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter3.geojson', { style: { color: 'green', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter4.geojson', { style: { color: 'orange', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter5.geojson', { style: { color: 'purple', weight: 2 } }) // New filter added
+        loadGeoJSON('static/geojson/filter1.geojson', {
+            filter: function(feature) {
+                return feature.properties.PRCLOADCHG > -1.0;
+            },
+            style: { color: 'red', weight: 2 }
+        }),
+        loadGeoJSON('static/geojson/filter2.geojson', {
+            filter: function(feature) {
+                return feature.properties.PRCLOADCHG > -0.5;
+            },
+            style: { color: 'blue', weight: 2 }
+        }),
+        loadGeoJSON('static/geojson/filter3.geojson', {
+            filter: function(feature) {
+                return feature.properties.PRCLOADCHG > 0;
+            },
+            style: { color: 'green', weight: 2 }
+        }),
+        loadGeoJSON('static/geojson/filter4.geojson', {
+            filter: function(feature) {
+                return feature.properties.PRCLOADCHG > 0.5;
+            },
+            style: { color: 'orange', weight: 2 }
+        }),
+        loadGeoJSON('static/geojson/filter5.geojson', {
+            filter: function(feature) {
+                return feature.properties.PRCLOADCHG > 1.0;
+            },
+            style: { color: 'purple', weight: 2 }
+        })
     ]).then(function(layers) {
         if (!layers.every(layer => layer)) {
             console.error("One or more layers failed to load. Check GeoJSON file paths.");
@@ -129,7 +154,7 @@
         filter2Layer.addTo(map);
         filter3Layer.addTo(map);
         filter4Layer.addTo(map);
-        filter5Layer.addTo(map); // Add the new layer to the map
+        filter5Layer.addTo(map);
 
         var groupedOverlays = {
             "Zones": {
@@ -137,11 +162,11 @@
                 "Centroid Connectors": centroidLayer
             },
             "Filtered Highways": {
-                "Filter1: PRCLOADCHG>-1.0": filter1Layer,
-                "Filter2: PRCLOADCHG>-0.5": filter2Layer,
-                "Filter3: PRCLOADCHG>0": filter3Layer,
-                "Filter4: PRCLOADCHG>0.5": filter4Layer,
-                "Filter5: PRCLOADCHG>1.0": filter5Layer
+                "PRCLOADCHG > -1.0": filter1Layer,
+                "PRCLOADCHG > -0.5": filter2Layer,
+                "PRCLOADCHG > 0": filter3Layer,
+                "PRCLOADCHG > 0.5": filter4Layer,
+                "PRCLOADCHG > 1.0": filter5Layer
             }
         };
 
