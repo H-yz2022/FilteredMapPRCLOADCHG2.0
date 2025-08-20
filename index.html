@@ -21,23 +21,15 @@
 </head>
 <body>
 <div id="map"></div>
-
 <script>
     var map = L.map('map').setView([39.23, -76.68], 11);
-
     var baseTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 19
     }).addTo(map);
-
-    L.control.measure({
-        position: 'topleft'
-    }).addTo(map);
-
+    L.control.measure({ position: 'topleft' }).addTo(map);
     L.control.mousePosition({ position: 'topright' }).addTo(map);
-
-    // Fetch all GeoJSON files
     Promise.all([
         fetch('static/geojson/taz.geojson').then(r => r.json()),
         fetch('static/geojson/centroid.geojson').then(r => r.json()),
@@ -49,24 +41,17 @@
     ])
     .then(function(data) {
         var [tazData, centroidData, filter1Data, filter2Data, filter3Data, filter4Data, filter5Data] = data;
-
-        // D3.js Color Scale for TAZ Areas
         var colorScale = d3.scaleSequential(d3.interpolateYlGn);
-
-        // Extract all numeric TAZ_Area values from the fetched data
         var tazAreas = tazData.features.map(f => +f.properties.TAZ_Area || 0);
         var numericTazAreas = tazAreas.filter(d => isFinite(d));
         var extent = d3.extent(numericTazAreas);
         colorScale.domain(extent);
-
         function getColorForTaz(area) {
             if (area === 0) {
                 return "#faded1";
             }
             return colorScale(area);
         }
-
-        // Now create the Leaflet layers
         var tazLayer = L.geoJSON(tazData, {
             style: function(feature) {
                 var area = feature.properties.TAZ_Area || 0;
@@ -86,15 +71,12 @@
                 );
             }
         });
-
         var centroidLayer = L.geoJSON(centroidData, { style: { color: 'yellow', weight: 1 } });
         var filter1Layer = L.geoJSON(filter1Data, { filter: (f) => f.properties.PRCLOADCHG > -1.0, style: { color: 'red', weight: 2 } });
         var filter2Layer = L.geoJSON(filter2Data, { filter: (f) => f.properties.PRCLOADCHG > -0.5, style: { color: 'blue', weight: 2 } });
         var filter3Layer = L.geoJSON(filter3Data, { filter: (f) => f.properties.PRCLOADCHG > 0, style: { color: 'green', weight: 2 } });
         var filter4Layer = L.geoJSON(filter4Data, { filter: (f) => f.properties.PRCLOADCHG > 0.5, style: { color: 'orange', weight: 2 } });
         var filter5Layer = L.geoJSON(filter5Data, { filter: (f) => f.properties.PRCLOADCHG > 1.0, style: { color: 'purple', weight: 2 } });
-
-        // Define and add the grouped layers control
         var groupedOverlays = {
             "Zones": {
                 "TAZ Areas": tazLayer,
@@ -108,14 +90,8 @@
                 "PRCLOADCHG > 1.0": filter5Layer
             }
         };
-
-        var baseMaps = {
-            "CartoDB Positron": baseTileLayer
-        };
-
+        var baseMaps = { "CartoDB Positron": baseTileLayer };
         L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
-
-        // Add the desired default layers to the map
         tazLayer.addTo(map);
         centroidLayer.addTo(map);
     })
