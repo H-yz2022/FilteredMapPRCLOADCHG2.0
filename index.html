@@ -32,12 +32,7 @@
     }).addTo(map);
 
     L.control.measure({
-        position: 'topleft',
-        // This is a common issue with the plugin. You'll need to
-        // either ensure the images folder exists or configure the
-        // plugin to use an alternative location.
-        // For a quick fix, you can copy the images from the plugin's
-        // source code to your `lib/images` folder.
+        position: 'topleft'
     }).addTo(map);
 
     L.control.mousePosition({ position: 'topright' }).addTo(map);
@@ -123,7 +118,6 @@
         // Add the desired default layers to the map
         tazLayer.addTo(map);
         centroidLayer.addTo(map);
-
     })
     .catch(error => {
         console.error('Error fetching GeoJSON data:', error);
