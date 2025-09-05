@@ -1,5 +1,5 @@
 # FilteredMap new
-https://h-yz2022.github.io/FilteredMapPRCLOADCHG/
+(https://h-yz2022.github.io/FilteredMapPRCLOADCHG2.0/)
 
 
 This map describes the projected changes in traffic volume on highways between 2035 and 2045, based on the SMRT model. Instead of showing the total change over the entire period, it focuses on incremental growth and decline, using percent change ranges to provide a more detailed analysis. The filters highlight different degrees of change in traffic load, from a significant decrease (below -1.0) to a major increase (greater than 1.0). By breaking down the data into 16 distinct ranges, the map provides a finer-grained analysis of how traffic loads are expected to evolve within this specific 10-year period, allowing users to identify areas with significant shifts, small changes, or no change at all. This granular filtering approach allows for a clear, interpretable visualization of specific change magnitudes, serving as an effective compromise between data detail and file size limitations, as it avoids a single, massive file by distributing the data across 16 smaller, more manageable GeoJSON files.
