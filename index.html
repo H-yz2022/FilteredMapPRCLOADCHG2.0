@@ -92,22 +92,22 @@
             }
         }),
         loadGeoJSON('static/geojson/centroid.geojson', { style: { color: 'yellow', weight: 1 } }),
-        loadGeoJSON('static/geojson/filter1.geojson', { style: { color: 'darkred', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter2.geojson', { style: { color: 'red', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter3.geojson', { style: { color: 'orangered', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter4.geojson', { style: { color: 'orange', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter5.geojson', { style: { color: 'gold', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter6.geojson', { style: { color: 'yellow', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter7.geojson', { style: { color: 'lime', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter8.geojson', { style: { color: 'greenyellow', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter9.geojson', { style: { color: 'limegreen', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter10.geojson', { style: { color: 'forestgreen', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter11.geojson', { style: { color: 'green', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter12.geojson', { style: { color: 'darkgreen', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter13.geojson', { style: { color: 'blue', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter14.geojson', { style: { color: 'royalblue', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter15.geojson', { style: { color: 'darkblue', weight: 2 } }),
-        loadGeoJSON('static/geojson/filter16.geojson', { style: { color: 'navy', weight: 2 } })
+        loadGeoJSON('static/geojson/filter1.geojson', { style: { color: '#08306b', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter2.geojson', { style: { color: '#08519c', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter3.geojson', { style: { color: '#2171b5', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter4.geojson', { style: { color: '#4292c6', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter5.geojson', { style: { color: '#6baed6', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter6.geojson', { style: { color: '#9ecae1', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter7.geojson', { style: { color: '#c6dbef', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter8.geojson', { style: { color: '#fcbba1', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter9.geojson', { style: { color: '#fc9272', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter10.geojson', { style: { color: '#fb6a4a', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter11.geojson', { style: { color: '#ef3b2c', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter12.geojson', { style: { color: '#cb181d', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter13.geojson', { style: { color: '#a50f15', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter14.geojson', { style: { color: '#67000d', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter15.geojson', { style: { color: '#49000a', weight: 1 } }),
+        loadGeoJSON('static/geojson/filter16.geojson', { style: { color: '#2b0006', weight: 1 } })
     ]).then(function(layers) {
         if (!layers.every(layer => layer)) {
             console.error("One or more layers failed to load. Check GeoJSON file paths.");
